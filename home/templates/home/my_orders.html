@@ -1,0 +1,170 @@
+{% extends "./base.html" %}
+{% load food_tags %}
+{% load order_tags %}
+{% block title %}my_orders{%endblock%}
+{% block content %}
+
+
+
+
+<div class=" mt-2 col-lg-3  boredr-b mx-auto   rounded  mb-2 ">
+
+
+    <div class=" ul-center  text-center">
+        <ul class="  nav nav-pills " id="pills-tab" role="tablist">
+            <li class=" text-center nav-item" role="presentation">
+                <a class=" text-center nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                    aria-controls="pills-profile" aria-selected="true">Stationary</a>
+            </li>
+            <li class="  text-center nav-item" role="presentation">
+                <a class=" text-center nav-link " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                    aria-controls="pills-home" aria-selected="false">Food</a>
+            </li>
+            
+    
+        </ul>
+    </div>
+
+
+</div>
+<div class="tab-content" id="pills-tabContent">
+
+    <!--------------stationary start--------------------------->
+    <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <div class="container mb-5 ">
+            {% for order_for_stationary in order_for_stationary %}
+            <div class="row  bg-light mt-3 border border-primary ">
+                <div class="mx-auto">
+                    <h6 class="">Order <span
+                            class="badge badge-{% get_order_status_class order_for_stationary.order_status %}">{{order_for_stationary.order_status}}</span>
+                        on
+                        {{order_for_stationary.date|date}}</h6>
+                </div>
+                <div class="col-12 mx-auto">
+                    <div class="row mt-1 mb-1 gx-3">
+
+                        <div class="  border  col-12 mx-auto main_cart  mb-3 shadow">
+                            {% for oi in order_for_stationary.orderitem_st_set.all %}
+                            <div class="bg-light p-3">
+
+                                <div class="row ">
+                                    <div
+                                        class="col-3 mx-auto bg-light d-flex justify-content-center align-item-center product_img">
+
+                                        <div>
+                                            <img class="border img-float img rounded-circle" height="50px"
+                                                src="{{oi.stationarystore.image.url}}" alt="">
+                                            <div class="text-center">
+                                                <b>
+                                                    {{oi.stationarystore.name}}
+                                                </b>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="  col-9 mx-auto px-4 mt-2">
+                                        <div class="row">
+
+                                            <div class="   col-4 mx-auto text-center mt-2">
+                                                <p><b>Price</b></p>
+                                                <p>₹ {{oi.price}}</p>
+                                            </div>
+                                            <div class="   col-4 mx-auto text-center mt-2">
+                                                <p><b>Qty</b></p>
+                                                <p>{{oi.quantity}}</p>
+                                            </div>
+                                            <div class="  col-4 mx-auto text-center mt-2">
+                                                <p><b>total</b></p>
+                                                <p>₹ {% multiply oi.quantity oi.price %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+    <!--------------stationary end--------------------------->
+
+
+
+
+    <!--------------food start--------------------------->
+    <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="container mb-5 ">
+            {% for order_for_food in order_for_food %}
+            <div class="row  bg-light mt-3 border border-primary ">
+                <div class="mx-auto">
+                    <h6  class="">Order <span
+                            class="badge badge-{% get_order_status_class order_for_food.order_status %}">{{order_for_food.order_status}}</span>
+                        on
+                        {{order_for_food.date|date}}</h6 >
+                </div>
+                <div class="col-12 mx-auto">
+                    <div class="row mt-1 mb-1 gx-3">
+
+                        <div class="  border  col-12 mx-auto main_cart  mb-3 shadow">
+                            {% for oi in order_for_food.orderitem_fd_set.all %}
+                            <div class="bg-light p-3">
+
+                                <div class="row ">
+                                    <div
+                                        class="col-3 mx-auto bg-light d-flex justify-content-center align-item-center product_img">
+
+                                        <div>
+                                            <img class="border img-float img rounded-circle" height="50px"
+                                                src="{{oi.foodstore.image.url}}" alt="">
+                                            <div class="text-center">
+                                                
+                                                <b>{{oi.foodstore.name}}</b>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="  col-9 mx-auto px-4 mt-2">
+                                        <div class="row">
+
+                                            <div class="   col-4 mx-auto text-center mt-2">
+                                                <p><b>Price</b></p>
+                                                <p>₹ {{oi.price}}</p>
+                                            </div>
+                                            <div class="   col-4 mx-auto text-center mt-2">
+                                                <p><b>Qty</b></p>
+                                                <p>{{oi.quantity}}</p>
+                                            </div>
+                                            <div class="  col-4 mx-auto text-center mt-2">
+                                                <p><b>total</b></p>
+                                                <p>₹ {% multiply oi.quantity oi.price %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+        </div>           
+    </div>
+
+    <!------------------food end----------------------->
+
+
+</div>
+
+
+
+{% endblock %}

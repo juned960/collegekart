@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% load static%}
+{% block linkforcss %} <link rel="stylesheet" href="{% static 'home/css/signuppage.css' %}"> {%endblock%}
+{% block title %}signup{%endblock%}
+
+{% block content %}
+
+<div class=" main_signup ">
+    <div class=" p-2 ">
+        <div class=" formdivsignup col-lg-4 bg-info  mx-auto border rounded p-3 mt-2 shadow p-3 mb-5 bg-white rounded ">
+            <form class="formdiv" action="/signup/"  method="post">
+                {% csrf_token %}
+             <h5 class=" text-center ">Create Account</h5>
+             <hr>
+             {{ form|crispy }}
+             
+             <div class="form-group align-middle">
+                 <input class="btn btn-info " type="submit" value="Create Account">
+             </div></form>
+         </div>
+    </div>
+</div>
+{% endblock %}
+

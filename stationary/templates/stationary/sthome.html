@@ -1,0 +1,104 @@
+
+{% extends "./base.html" %}
+{% load food_tags %}
+
+{% load filter_tags %}
+{% load static %}
+{% block title %}Home{%endblock%}
+{% block content %}
+
+
+
+<div class=" bg-light row  p-2 mr-0  ">
+    <div class="formdivlogin col-lg-2 col-8 bg-info  mx-auto    bg-light  ">
+
+        <div class="text-center d-flex justify-content-between">
+            <div><a href="/stationary/" class="btn btn-info btn-sm  disabled" role="button" data-bs-toggle="button"
+                aria-pressed="true"><u>Stationary</u></a></div>
+            <div><a href="/foods/" class="btn btn-danger btn-sm active " role="button" data-bs-toggle="button">Foods</a></div>
+            
+        </div>
+
+    </div>
+</div>
+
+
+<!--carousel slide-->
+
+<div class="container-fluid bg-light ">
+    <div class="row  ">
+        <div class="col-lg-2 col-md-12 col-sm-12 col-12 border " style=" background-color:rgb(207, 237, 245) ">
+            <!--filter div-->
+            <form id="filterForm" action="/stationary/">
+                <div>
+                    <div class="form-group">
+                        <label for="Category"><h6><u class="text-info">Stationary</u></h6></label>
+                        <select onchange="submitForm()" name="category" class="form-control" id="category">
+                            <option value="">--Select category-- </option>
+                            {% for category in category%}
+                            <option {% selected_attr request.GET.category category.slug %} value="{{category.slug}}">
+                                {{category.title}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <a href="/stationary/" class="btn btn-info btn-sm float-right">Clear Filter</a>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="col bg-light mt-2 ">
+            <div class="row    ">
+                {% for stationary in page_object %}
+                <!--stationarystore = page_object-->
+                <div class="col-lg-3  col-md-3 col-sm-4 col-6 p-1 " >
+                    <div class="  shadow p-1 mb-2 bg-white rounded  ">
+                        <!-- style="width: 13rem;"-->
+                        <img src="{{stationary.image.url}}" class=" img-fluid   " alt="item">
+                        <div class="card-body ">
+                            <h6 class="card-title">{{stationary.sub_name}}...<h6>
+                            <span class="text-danger"><del>₹{{stationary.price}}</del></span>
+                            
+                            <span><b>₹{% curren stationary %}</b></span>
+                            <span class="float-right badge badge-warning ">save{{stationary.discount}}%</span>
+
+                        </div>
+                        <div class="card-footer p-0">
+                            <a href="/stationary/product/{{stationary.slug}}" class="btn btn-info btn-block">See More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div >
+                <nav aria-label="Page navigation " class="mt-2">
+                    <ul class="pagination justify-content-end">
+
+                        {% if page_object.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?{{pageurl}}1">1 &laquo; </a></li>
+
+                        <li class="page-item"><a class="page-link"
+                                href="?{{pageurl}}{{ page_object.previous_page_number }}">{{ page_object.previous_page_number }}</a></li>
+                        {% endif %}
+
+                        <li class="page-item">
+                            <a href="" class="page-link bg-info text-dark">{{ page_object.number }} </a>
+                        </li>
+
+                        {% if page_object.has_next %}
+                        <li class="page-item"><a class="page-link"
+                                href="?{{pageurl}}{{ page_object.next_page_number }}">next</a></li>
+                        <li class="page-item"> <a class="page-link"
+                                href="?{{pageurl}}{{ page_object.paginator.num_pages }}">{{ page_object.paginator.num_pages }} &raquo;</a></li>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<script src='{% static "home/js/home.js" %}'></script>
+
+{% endblock %}

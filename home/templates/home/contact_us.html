@@ -1,0 +1,47 @@
+{% extends "./base.html" %}
+{% load static%}
+{% load crispy_forms_tags %}
+{% block linkforcss %} <link rel="stylesheet" href="{% static 'home/css/contact_us.css' %}"> {%endblock%}
+{% block content %}
+<div class="container">
+    <div class="contact-parent">
+       <div class="contact-child child1">
+          <p>
+             <i class="fas fa-map-marker-alt"></i> Address <br />
+             <span> Budge Budge Institute Of Technology 
+             <br />
+             kolkata ,  India
+             </span>
+          </p>
+          <p>
+             <i class="fas fa-phone-alt"></i>CALL NOW <br />
+             <span><a href="tel:8083107536">8083107536</a></span>
+          </p>
+          <p>
+             <i class=" far fa-envelope"></i> General Support <br />
+             <span><a href="mailto:contact.clgkart@gmail.com "class="" >contact.clgkart@gmail.com</a></span>
+          </p>
+       </div>
+       <div class="contact-child child2">
+          <div class="inside-contact">
+             <h2>Contact Us</h2>
+             <form  action="/contact_us/"  method="post">
+
+               {{ form|crispy }}
+               {% csrf_token %}
+               <div class="form-group align-middle">
+                   <input class="btn btn-info "  onclick="JSalert()" type="submit" value="submit">
+               </div>
+            </form>
+            
+          </div>
+       </div>
+    </div>
+ </div>
+
+<script type="text/javascript">
+   function JSalert(){
+       alert("Thank You Our team will be in contact with you shortly..");
+   }
+</script>
+{% endblock %}

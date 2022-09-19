@@ -1,0 +1,46 @@
+{% extends "./base.html" %}
+{% load static%}
+{% block linkforcss %} <link rel="stylesheet" href="{% static 'home/css/career_page.css' %}"> {%endblock%}
+
+{% block content %}
+
+<div class="career_1 border border-dark pt-4">
+    
+        <col class="row">
+        <div class=" col-md-7 col-12 mx-auto mt-5 mb-5">
+            <h1 class="text-center display-4 text-info"><strong>We're looking for talented guys</strong> </h1>
+           
+           <h4 class=" text-center text-info">We keep satisfaction as our first priority</h4>
+             <br>
+           <p class=" text-center text-white"> <strong >Let us give the best</strong></p>
+            <br>
+            
+           <div class="text-center"><button type="button" onclick="togglepopup()" class=" float-center btn btn-primary">check current openings</button></div>
+        </div>
+    
+</div>
+
+
+<div class="popup bg-info" id="popup-1">
+  <div class="overlay"></div>
+  <div class="content">
+    <div class=" col-md-6 col-12 close-btn" onclick="togglepopup()">&times;</div>
+   
+    <p>
+      <b>Sorry </b>
+      currently there is no openings
+      <br>please visit this page next time.
+    </p>
+  </div>
+</div>
+
+
+
+<script>
+  function togglepopup(){
+    document.getElementById("popup-1").classList.toggle("active");
+    
+  }
+</script>
+
+{% endblock %}

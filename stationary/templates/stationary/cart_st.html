@@ -1,0 +1,136 @@
+{% extends "./base.html" %}
+{% load food_tags %}
+{% block content %}
+
+
+
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <div class="row mt-2 gx-3">
+
+                <div class="col-12 col-lg-8 col-12 mx-auto main_cart mb-lg-0 mb-5 ">
+                    {% for c in cart_st %}
+                    <div class="">
+
+                        <div class=" mb-2 shadow border border-info row">
+                            <div class="    col-8 mx-auto  mt-2">
+
+                                <div class="row">
+                                    <div class=" col-12">
+                                        <div>
+
+                                            <blockquote class="blockquote">
+                                                {{c.stationary}}
+                                            </blockquote>
+
+                                        </div>
+                                        <div class=" row mx-auto  ">
+                                            {% discount_cart c.stationary.price c.stationary.discount as sale_price %}
+
+
+                                            <div class="  col-md-4 col-12">
+                                                <p><strong> Price :{% multiply sale_price c.quantity as total %} ₹
+                                                        {{total}}</strong></p>
+                                            </div>
+                                            <div class="col-md-8 col-12">
+                                                <div class="">
+                                                    <p><small>
+                                                            <span class="text-danger"><del>
+                                                                 {% multiply c.stationary.price c.quantity as total2 %} ₹ {{total2}}
+                                                                    
+                                                                    </del >
+
+                                                            </span>
+
+                                                            <span class="text-success">
+                                                                 {{c.stationary.discount}}% off
+                                                                </span>
+                                                        </small></p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col pl-4">
+                                                <p>
+                                                    Delivary charge : 0
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4  mx-auto d-flex justify-content-center align-item-center  product_img">
+
+                                <div class="row border">
+                                    <div class=" mx-auto d-flex justify-content-center align-item-center col-12 p-1">
+                                        <img height="100px" width="100" src="{{c.stationary.image.url}}" alt="">
+                                    </div>
+                                    <div class=" mx-auto d-flex justify-content-center align-item-center col-12">
+                                        <ul class="pagination justify-content-end set_quantity">
+
+                                            <li class="page-item">
+                                                <button class="page-link" onclick="decreaseNumber()"><i
+                                                        class="fas fa-minus"></i></button>
+                                            </li>
+                                            <li class="page-item">
+                                                <button class="page-link"
+                                                    onclick="decreaseNumber()"><b>{{c.quantity}}</b><i></i></button>
+                                            </li>
+                                            </li>
+                                            <li class="page-item"><button class="page-link"
+                                                    onclick="increaseNumber()"><i class="fas fa-plus"></i></button>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+
+                <div class="  col-md-12 col-lg-4 col-12 mx-auto mt-lg-0 mt-md-5">
+                    <div class="border p-2 shadow bg-light">
+
+                        <div class="price_indiv d-flex justify-content-between ">
+                            <p>Product amount</p>
+                            <p><span>₹ {{cart_st|cal_total_payable_amount_st}}</span></p>
+
+                        </div>
+                        <div class="price_indiv d-flex justify-content-between ">
+                            <p>shiping charge</p>
+                            <p><span>₹ 0</span></p>
+
+                        </div>
+                        <hr />
+                        <div class="total-amt d-flex justify-content-between  ">
+                            <p><b>The total amount : <b> </b>
+                                    <p><span>₹{{cart_st|cal_total_payable_amount_st}}</span>
+                                </b></p>
+
+                        </div>
+                        <div class="total-amt d-flex justify-content-between font-weight-bold ">
+                            <div><a href="/stationary/clearcart/?return_url={{request.path}}" class="btn btn-outline-info">Clear
+                                    Cart </a></div>
+                            <div><a href="/stationary/checkout" class="btn btn-outline-info active"> check out</a></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

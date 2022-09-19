@@ -1,0 +1,51 @@
+{% extends "./base.html" %}
+{% load crispy_forms_tags %}
+{% load food_tags %}
+{% block content %}
+
+
+<div class="container mt-2 mb-2">
+
+
+    <div class="row">
+
+        <div class="col-lg-5 col-12 ml- bg-light mx-auto border rounded shadow">
+            <div class="">
+                <div class=" h5 alert text-center">Total Payable Amount: ₹
+                    {{cart_st|cal_total_payable_amount_st}}</div>
+                <hr>
+                <form action="/stationary/checkout/" method="POST">
+
+                    <fieldset disabled>
+                        {% for ex in exu %}
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">College</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ex.college_name}}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">Phone Numer</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ex.phone_num}}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="disabledTextInput" class="form-label">pincode</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="{{ex.pincode}}">
+                        </div>
+                       {% endfor %}
+                    </fieldset>
+                    
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <hr>
+                    <div class="form-group">
+                        <input class="btn btn-info" type="submit" value="Place Order">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

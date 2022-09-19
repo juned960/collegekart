@@ -1,0 +1,241 @@
+<!--boostrapv4.6-->
+{% load static%}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!---cdnj-->
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+    integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  
+  <title>{% block title %}{%endblock%}</title>
+ 
+</head>
+
+<body>
+  <!--------------------navbar---start------------------>
+
+  <nav class=" sticky-top  navbar  navbar-expand-lg navbar-dark bg-dark">
+   
+    <button class="   navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon  "></span>
+    </button>
+    <a class="navbar-brand text-info " href="/">
+    
+        <h4 class=" pl-2 text-center"><b class="textinfo">clg</b><b class="text-warning">kart</b></h4>
+      
+    </a>
+    <div class="   navbar-toggler" type="button" data-toggle="collapse" >
+      <a href="/my_cart" class="fas fa-cart-arrow-down text-info"></a>
+    </div>
+    
+   
+    
+
+     
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item  active">
+          <a class="nav-link" href="#"><b>Stationary</b> <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="#"><b>Food</b> <span class="sr-only">(current)</span></a>
+        </li>
+        
+      </ul>
+      <ul class="navbar-nav ml-auto">
+       
+
+        <li class="nav-item">
+          <a class="nav-link" href="#"> <i class="fas fa-cart-arrow-down text-info"></i><b> Cart</b> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><b>Order </b></a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="#"><b>{{user.first_name }}</b></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#"><b>Logout</b></a>
+        </li>
+
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="#"><b>Login</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><b>Signup</b></a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    
+    
+  </nav>
+  <!-------------------navbar---end---------------------------->
+
+
+
+
+  {% block content %}{%endblock%}
+
+
+
+  <!-----------------Footer---start--------------------->
+
+  <footer class="text-center text-lg-start bg-dark text-muted">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom ">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block text-white ">
+        <p>Get connected with us on social networks:</p>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <span style="font-size: 2rem; color: lightblue;">
+          <a href="https://www.facebook.com/clgkart" class="mr-4 text-reset">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </span>
+        <span style="font-size: 2rem; color: lightblue;">
+          <a href="https://twitter.com/juned961" class="mr-4 text-reset">
+            <i class="fab fa-twitter-square"></i>
+          </a>
+        </span>
+        <span style="font-size: 2rem; color: lightblue;">
+          <a href="https://www.instagram.com/junedaslam96/" class="mr-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </span>
+        <span style="font-size: 2rem; color: lightblue;">
+          <a href="https://www.linkedin.com/company/clgkart/" class="mr-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </span>
+
+
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="text-white ">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              USEFUL LINK
+            </h6>
+              <p>
+              <a href="/about_us" class="text-reset">About Us</a>
+            </p>
+            <p>
+              <a href="/team" class="text-reset">Our Team</a>
+            </p>
+            <p>
+              <a href="/career" class="text-reset">Carrer</a>
+            </p>
+            <p>
+              <a href="/contact_us" class="text-reset">Conatct US</a>
+            </p>
+            <p>
+              <a href="http://127.0.0.1:8000/admin/" class="text-reset">Admin Login</a>
+            </p>
+            
+            
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              POLICY
+            </h6>
+            <p>
+              <a href="/return_policy" class="text-reset">Return Policy</a>
+            </p>
+            <p>
+              <a href="/term_and_condition" class="text-reset">Term Of Use</a>
+            </p>
+            <p>
+              <a href="/privacy_policy" class="text-reset">Privacy</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class=" contacts col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase  fw-bold mb-4">
+              Contact
+            </h6>
+            <p><i class="fa fa-home me-3"></i> Budge Budge Institute Of Technology kolkata </p>
+            <p> </p>
+            <p>
+              <i class="fa fa-envelope me-3"></i>
+              <a href="mailto:contact.clgkart@gmail.com">contact.clgkart@gmail.com</a>
+              
+            </p>
+            <p><i class="fa fa-phone me-3"></i>
+              +91 9097787894
+            </p>
+
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+    <!-- Copyright
+
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05); ">
+      © 2021 Copyright:
+      <a class="text-reset fw-bold " href="#"><b class="text-white">clgkart</b></a>
+    </div>
+    Copyright -->
+  </footer>
+
+  <!------------------footer---end------------------------->
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+    crossorigin="anonymous"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  
+</body>
+
+</html>

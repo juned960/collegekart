@@ -1,0 +1,5 @@
+from stationary.views.stationary_home import sthome
+from stationary.views.product_page import show_stationary_product
+from stationary.views.cart import add_to_cart_st,cart_st,clear_cart
+from stationary.views.checkout import checkout,buynow_st,handlerequest,handlerequest_buynow
+from stationary.views.payment import validatePayment_st,buynow_validatePayment_st
