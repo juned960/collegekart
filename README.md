@@ -14,3 +14,6 @@ admin Panel dashboard
 
 • Tech Used are HTML , CSS , Javascript , Bootstrap , Django , REST APIs ,
 TinyMCE editor.
+
+
+Screenshot
