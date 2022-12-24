@@ -1,6 +1,6 @@
 # ECOMMERCE WEB APPLICATION
 
-Link : https://ecommerceproject-production.up.railway.app/
+Link : collegeKart.up.railway.app
 
 • Developed and coded a complex Full-stack, Ecommerce web application,
 Which is fully Responsive and designed to help college students, in their
