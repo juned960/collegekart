@@ -11,16 +11,6 @@ from ckeditor.fields import RichTextField
 
 # Create your models here.
 
-    
-  
-
-class Extendeduser(models.Model):
-    phone_num =models.CharField(max_length=15)
- 
-    college_name=models.CharField(max_length=100)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-
-
     def __str__(self):
         return str(self.user)
 
